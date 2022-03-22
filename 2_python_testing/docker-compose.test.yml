@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  sut:
+    build: .
+    image: ubuntu:trusty
+    volumes:
+      - sut_data:/app
+    links:
+      - web
+  web:
+    build: .
+    image: python:latest
+    volumes:
+      - python_data:/app
+    ports:
+      - "5001:80"
+
+volumes:
+  python_data: {}
+  sut_data: {}
